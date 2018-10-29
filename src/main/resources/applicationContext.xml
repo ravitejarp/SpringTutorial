@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:sport.properties"/>
+
+    <bean id="myCoach" class="com.ravi.spring.coach.TrackCoach">
+        <constructor-arg ref="fortuneServiceBad"/>
+    </bean>
+    <bean id="fortuneServiceBad" class="com.ravi.spring.fortuneservice.BadFortuneService"/>
+    <bean id="baseBallCoach" class="com.ravi.spring.coach.BaseBallCoach">
+        <constructor-arg ref="fortuneService"/>
+    </bean>
+    <bean id="fortuneService" class="com.ravi.spring.fortuneservice.HappyFortuneService"/>
+
+    <bean id="hockeyCoach" class="com.ravi.spring.coach.HockeyCoach">
+        <property name="fortuneService" ref="fortuneService"/>
+        <property name="email" value="${email}"/>
+        <property name="team" value="${team}"/>
+    </bean>
+
+    <bean id="footBallCoach" class="com.ravi.spring.coach.FootballCoach">
+        <property name="fortuneService" ref="fortuneRandom"/>
+    </bean>
+    <bean id="fortuneRandom" class="com.ravi.spring.fortuneservice.NeutralFortune"/>
+</beans>

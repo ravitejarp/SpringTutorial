@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="mycoach" class="com.ravi.spring.coach.TrackCoach">
+
+    </bean>
+
+    <bean id="protoCoach" class="com.ravi.spring.coach.BaseBallCoach" scope="prototype">
+        <constructor-arg ref="fortuneGood"/>
+    </bean>
+    <bean id="fortuneGood" class="com.ravi.spring.fortuneservice.HappyFortuneService"/>
+</beans>
